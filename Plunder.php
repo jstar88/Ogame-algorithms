@@ -4,7 +4,7 @@
  * @author jstar88
  * @copyright 2013
  */
- 
+
 class Plunder
 {
     /**
@@ -30,44 +30,44 @@ class Plunder
     {
         //stolen resources
         $steal = array(
-            'metal'     => 0,
-            'crystal'   => 0,
+            'metal' => 0,
+            'crystal' => 0,
             'deuterium' => 0);
-            
+
         //max resources that can be take
-        $metal     *= $percentage;
-        $crystal   *= $percentage;
+        $metal *= $percentage;
+        $crystal *= $percentage;
         $deuterium *= $percentage;
 
         //Fill up to 1/3 of cargo capacity with metal
         $stolen = min($capacity / 3, $metal);
         $steal['metal'] += $stolen;
-        $metal          -= $stolen;
-        $capacity       -= $stolen;
+        $metal -= $stolen;
+        $capacity -= $stolen;
 
         //Fill up to half remaining capacity with crystal
         $stolen = min($capacity / 2, $crystal);
         $steal['crystal'] += $stolen;
-        $crystal          -= $stolen;
-        $capacity         -= $stolen;
+        $crystal -= $stolen;
+        $capacity -= $stolen;
 
         //The rest will be filled with deuterium
         $stolen = min($capacity, $deuterium);
         $steal['deuterium'] += $stolen;
-        $deuterium          -= $stolen;
-        $capacity           -= $stolen;
+        $deuterium -= $stolen;
+        $capacity -= $stolen;
 
         //If there is still capacity available fill half of it with metal
         $stolen = min($capacity / 2, $metal);
         $steal['metal'] += $stolen;
-        $metal          -= $stolen;
-        $capacity       -= $stolen;
+        $metal -= $stolen;
+        $capacity -= $stolen;
 
         //Now fill the rest with crystal
         $stolen = min($capacity, $crystal);
         $steal['crystal'] += $stolen;
-        $crystal          -= $stolen;
-        $capacity         -= $stolen;
+        $crystal -= $stolen;
+        $capacity -= $stolen;
 
         return $steal;
     }
@@ -85,8 +85,8 @@ class Plunder
      */
     public static function splitResourcesAcs($totalCapacity, $capacity, $metal, $crystal, $deuterium, $percentage = 0.5)
     {
-        $metal     *= $capacity / $totalCapacity;
-        $crystal   *= $capacity / $totalCapacity;
+        $metal *= $capacity / $totalCapacity;
+        $crystal *= $capacity / $totalCapacity;
         $deuterium *= $capacity / $totalCapacity;
 
         return Plunder::splitResources($capacity, $metal, $crystal, $deuterium, $percentage);
