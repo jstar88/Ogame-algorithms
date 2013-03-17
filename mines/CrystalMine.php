@@ -26,7 +26,7 @@ class CrystalMine extends Mine
      * @param int $level: the level of this crystal mine.
      * @return int;
      */
-    public static function getEnergyConsumptions(int $level)
+    public static function getEnergyConsumptions($level)
     {
         return 10 * $level * pow(1.1,$level);
     }
